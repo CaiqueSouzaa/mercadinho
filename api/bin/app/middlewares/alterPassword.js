@@ -10,7 +10,7 @@ module.exports = async (req, res, next) => {
         if (user.dataValues.update_password) {
             return res.status(200).json({
                 message: 'Necessário atualizar sua senha de acesso',
-                url: `http://${process.env.APP_URL}:${process.env.APP_PORT}/update-password?login=${req.userLogin}`,
+                url: `${process.env.APP_URL}:${process.env.APP_PORT}/update-password/${req.userLogin}`,
                 code: 200,
             });
         }

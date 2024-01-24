@@ -161,6 +161,19 @@ class UsuariosController {
         }
 
         // Atualizando a senha do usuário
+        try {
+            await user.update({
+                password: data.nova_senha,
+                update_password: false,
+            });
+
+            return res.status(200).json({
+                message: 'Senha atualizada com sucesso',
+                code: 200,
+            });
+        } catch (err) {
+            return next(err);
+        }
     }
 }
 

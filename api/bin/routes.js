@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { body } = require('express-validator');
+const { body, param } = require('express-validator');
 
 // Importação de middlewares
 const catchError = require('./app/middlewares/catchError.js');
@@ -15,6 +15,14 @@ routes.post(
     '/login',
     body(['login', 'password']).escape(),
     SessoesController.store
+);
+
+// Atualização de senha de usuários
+routes.put(
+    '/update-password/:login',
+    param(['login']).escape(),
+    body(['senha', 'nova_senha', 'confirmacao_senha']).escape(),
+    UsuariosController.updatePassword
 );
 
 routes.use(jwtAuthorization);
